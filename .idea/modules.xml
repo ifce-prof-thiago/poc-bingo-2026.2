@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/poc-bingo.iml" filepath="$PROJECT_DIR$/poc-bingo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/poc-bingo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/poc-bingo.main.iml" />
     </modules>
   </component>
 </project>
