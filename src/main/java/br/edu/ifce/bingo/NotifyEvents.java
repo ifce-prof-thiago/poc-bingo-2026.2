@@ -22,14 +22,15 @@ public class NotifyEvents {
     }
 
     public void publish(final int number) {
+        final var event = SseEmitter
+                .event()
+                .name("sorted-number")
+                .data(number);
         for (final var emitter : emitters) {
-            final var event = SseEmitter
-                    .event()
-                    .name("sorted-number")
-                    .data(number);
             try {
                 emitter.send(event);
             } catch (IOException e) {
+                emitters.remove(emitter);
                 emitter.completeWithError(e);
             }
         }

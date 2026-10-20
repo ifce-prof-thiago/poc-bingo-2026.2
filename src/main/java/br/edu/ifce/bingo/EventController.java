@@ -1,11 +1,17 @@
 package br.edu.ifce.bingo;
 
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+
+import java.security.SecureRandom;
 
 @RestController
 @RequestMapping("/events")
+@CrossOrigin("*")
 public class EventController {
 
     private final NotifyEvents notifyEvents;
@@ -19,10 +25,9 @@ public class EventController {
         return notifyEvents.subscribe();
     }
 
-    @PostMapping
-    public void send(@RequestBody final Input input) {
-        notifyEvents.publish(input.n());
+    @GetMapping("random")
+    public void send() {
+        final var n = new SecureRandom().nextInt(75) + 1;
+        notifyEvents.publish(n);
     }
-
-    public record Input(int n) { }
 }
