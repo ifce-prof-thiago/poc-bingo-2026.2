@@ -1,4 +1,4 @@
-package br.edu.ifce.bingo.sheets.domain.usecases.create;
+package br.edu.ifce.bingo.sheets.core.shared;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

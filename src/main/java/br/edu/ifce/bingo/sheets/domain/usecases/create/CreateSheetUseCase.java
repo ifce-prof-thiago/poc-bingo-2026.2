@@ -1,10 +1,11 @@
 package br.edu.ifce.bingo.sheets.domain.usecases.create;
 
+import br.edu.ifce.bingo.sheets.core.shared.IHash;
+import br.edu.ifce.bingo.sheets.core.shared.INumbers;
 import br.edu.ifce.bingo.sheets.domain.usecases.gateways.IPersistSheetGateway;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
