@@ -2,7 +2,8 @@ package br.edu.ifce.bingo.sheets.domain.usecases.create;
 
 import br.edu.ifce.bingo.sheets.core.shared.IHash;
 import br.edu.ifce.bingo.sheets.core.shared.INumbers;
-import br.edu.ifce.bingo.sheets.domain.usecases.gateways.IPersistSheetGateway;
+import br.edu.ifce.bingo.sheets.infra.gateways.IPersistSheetGateway;
+import br.edu.ifce.bingo.sheets.infra.repositories.IPersistSheetRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,15 +12,25 @@ import java.util.List;
 @Component
 public class CreateSheetUseCase implements ICreateSheetUseCase {
 
+    private final IPersistSheetRepository persistSheetRepository;
     private final IPersistSheetGateway persistSheetGateway;
 
-    public CreateSheetUseCase(final IPersistSheetGateway persistSheetGateway) {
+    public CreateSheetUseCase(
+            final IPersistSheetRepository persistSheetRepository,
+            IPersistSheetGateway persistSheetGateway
+    ) {
+        this.persistSheetRepository = persistSheetRepository;
         this.persistSheetGateway = persistSheetGateway;
     }
 
     @Override
     @Transactional
     public CreateSheetOutput execute(CreateSheetInput input) {
+
+        if (!persistSheetGateway.existsGameById(input.gameId())) {
+            throw new RuntimeException("Não existe um jogo com o id '%s'".formatted(input.gameId()));
+        }
+
         var hash = "";
         List<Integer> listB;
         List<Integer> listI;
@@ -42,10 +53,10 @@ public class CreateSheetUseCase implements ICreateSheetUseCase {
                             listO
                     );
             hash = IHash.sha256(text);
-        } while (persistSheetGateway.existsByHash(hash));
+        } while (persistSheetRepository.existsByHash(hash));
 
-        persistSheetGateway.insert(
-                new IPersistSheetGateway.PersistSheet(
+        persistSheetRepository.insert(
+                new IPersistSheetRepository.PersistSheet(
                         input.gameId(),
                         listB,
                         listI,

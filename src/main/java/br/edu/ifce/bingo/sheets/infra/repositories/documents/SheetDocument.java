@@ -1,4 +1,4 @@
-package br.edu.ifce.bingo.sheets.infra.repositories;
+package br.edu.ifce.bingo.sheets.infra.repositories.documents;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

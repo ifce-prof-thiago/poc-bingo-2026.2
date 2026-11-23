@@ -1,8 +1,8 @@
-package br.edu.ifce.bingo.sheets.domain.usecases.gateways;
+package br.edu.ifce.bingo.sheets.infra.repositories;
 
 import java.util.List;
 
-public interface IPersistSheetGateway {
+public interface IPersistSheetRepository {
 
     void insert(PersistSheet persistSheet);
 

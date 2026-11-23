@@ -1,17 +1,18 @@
 package br.edu.ifce.bingo.sheets.infra.repositories;
 
-import br.edu.ifce.bingo.sheets.domain.usecases.gateways.IPersistSheetGateway;
+import br.edu.ifce.bingo.games.infra.repository.documents.GameDocument;
+import br.edu.ifce.bingo.sheets.infra.repositories.documents.SheetDocument;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PersistSheetGateway implements IPersistSheetGateway {
+public class PersistSheetRepository implements IPersistSheetRepository {
 
     private final MongoTemplate database;
 
-    public PersistSheetGateway(MongoTemplate database) {
+    public PersistSheetRepository(MongoTemplate database) {
         this.database = database;
     }
 

@@ -37,7 +37,7 @@ public interface INumbers {
         var numbers = new ArrayList<Integer>();
         var copyList = new ArrayList<>(list);
         for (var i = 0; i < n; i++) {
-            var index = new SecureRandom().nextInt(copyList.size()) + 1;
+            var index = new SecureRandom().nextInt(copyList.size());
             numbers.add(copyList.get(index));
             copyList.remove(index);
         }
