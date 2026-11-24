@@ -14,6 +14,7 @@ public record SheetDocument(
         List<Integer> listN,
         List<Integer> listG,
         List<Integer> listO,
-        String hash
+        String hash,
+        Boolean winner
 ) {
 }

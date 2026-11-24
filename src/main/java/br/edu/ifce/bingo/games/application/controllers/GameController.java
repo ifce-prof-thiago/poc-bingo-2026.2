@@ -2,10 +2,7 @@ package br.edu.ifce.bingo.games.application.controllers;
 
 import br.edu.ifce.bingo.games.domain.usecases.create.ICreateGameUseCase;
 import br.edu.ifce.bingo.games.domain.usecases.generate_draw_number.IGenerateDrawNumberUseCase;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api/v1/games")
 @RestController
@@ -27,9 +24,8 @@ public class GameController {
         return createGameUseCase.execute();
     }
 
-    @GetMapping
-
-    public int generate(String gameId) {
-        return generateDrawNumberUseCase.execute(gameId);
+    @PatchMapping
+    public void generate(@RequestBody IGenerateDrawNumberUseCase.GenerateDrawNumberInput input) {
+        generateDrawNumberUseCase.execute(input);
     }
 }

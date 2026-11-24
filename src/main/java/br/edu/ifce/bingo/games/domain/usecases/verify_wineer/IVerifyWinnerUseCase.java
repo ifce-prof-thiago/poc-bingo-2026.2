@@ -1,9 +1,9 @@
 package br.edu.ifce.bingo.games.domain.usecases.verify_wineer;
 
-import java.util.List;
+import java.util.Map;
 
 public interface IVerifyWinnerUseCase {
 
-    boolean execute(String gameId, List<Integer> numbers);
+    void execute(String gameId, Map<Integer, Boolean> numbers);
 
 }
